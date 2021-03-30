@@ -1,8 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 import csv
 from cafe_class import CafeForm
-import inspect
 
 
 app = Flask(__name__)
@@ -39,6 +38,7 @@ def add_cafe():
         # Make the form write a new row into cafe-data.csv
         # with   if form.validate_on_submit()
         append_to_csv(form)
+        return redirect(url_for('cafes'))
     return render_template('add.html', form=form)
 
 
